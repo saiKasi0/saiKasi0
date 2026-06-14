@@ -1,9 +1,30 @@
-- 👋 Hi, I’m @saiKasi0
-- 👀 I’m interested in coding, physics, music and weightlifting
-- 🌱 I’m currently learning machine learning and web development
-- 💞️ I’m looking to collaborate on cool and fun projects that hopefully tie in my interesets
-- 😄 Pronouns: he/him
-- ⚡ Fun fact: I like going to the gym
+# 👋 Hi, I’m Prabhav Kasibhatla
+
+🎓 **BS Computer Science & Computational Physics @ UT Austin**
+
+I'm a developer passionate about low-level systems programming, distributed systems, and bridging the gap between bare-metal performance and cloud infrastructure.
+
+### 🚀 Featured Projects
+
+*   🦀 **[Iron Clad](https://github.com/saiKasi0/iron_clad)** *(Completed)* 
+    A high-performance shell written in Rust. Building this unified my interests in core systems engineering (architecting the shell itself) and cloud infrastructure (leveraging AWS for rigorous benchmarking and validation).
+    *   **Performance:** Achieved up to a **x94 speedup** on specific parallel tasks.
+    *   **Memory Efficiency:** Delivered an **order of magnitude improvement** in memory spawn speedups compared to standard environments, with consistent, within-magnitude speedups across all other operations.
+
+*   🌊🧸 **WaterBearsDB** *(Work in Progress)*
+    Currently architecting a new database system.
+
+*   🌩️ **Vuyha** *(Work in Progress)*
+    TBA
+
+### 🌱 What I'm Exploring
+
+*   **Core Interests:** Systems, Machine Learning, Mathematics, and Quantum Computing.
+*   **Currently Learning:** Operating systems architecture, distributed systems, and networking.
+
+### ⚡ Quick Facts
+*   **Pronouns:** he/him
+*   **Fun Fact:** I like coffee, basketball, and weightlifting
 
 <!---
 saiKasi0/saiKasi0 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
