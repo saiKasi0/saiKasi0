@@ -2,7 +2,7 @@
 
 🎓 **BS Computer Science & Computational Physics @ UT Austin**
 
-I'm a developer passionate about low-level systems programming, distributed systems, and bridging the gap between bare-metal performance and cloud infrastructure.
+I'm a developer passionate about low-level systems programming, distributed systems, cloud, and ML.
 
 ### 🚀 Featured Projects
 
@@ -10,6 +10,11 @@ I'm a developer passionate about low-level systems programming, distributed syst
     A high-performance shell written in Rust. Building this unified my interests in core systems engineering (architecting the shell itself) and cloud infrastructure (leveraging AWS for rigorous benchmarking and validation).
     *   **Performance:** Achieved up to a **x94 speedup** on specific parallel tasks.
     *   **Memory Efficiency:** Delivered an **order of magnitude improvement** in memory spawn speedups compared to standard environments, with consistent, within-magnitude speedups across all other operations.
+
+*   🧠 **[Lohalloc](https://github.com/saiKasi0/Lohalloc)** *(Work in Progress)*
+    An intelligent, machine-learning-driven memory allocator that bridges ML and low-level systems architecture. It dynamically learns and adapts allocation strategies to minimize fragmentation and optimize throughput.
+    *   **Live Telemetry Dashboard:** Includes a custom real-time GUI (LOHA // ALLOC) to monitor heap maps, memory fragmentation percentages, operations per second, and latency.
+    *   **Adaptive Topologies:** Features distinct "training" and "inference" modes that analyze workload traces to converge on the most stable and performant memory layouts.
 
 *   🌊🧸 **WaterBearsDB** *(Work in Progress)*
     Currently architecting a new database system.
