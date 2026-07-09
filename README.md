@@ -6,7 +6,7 @@ I'm a developer passionate about low-level systems programming, distributed syst
 
 ### 🚀 Featured Projects
 
-*   🦀 **[Iron Clad](https://github.com/saiKasi0/iron_clad)** *(Completed)* 
+*   🦀 **[Iron Clad](https://github.com/saiKasi0/iron_clad)** 
     A high-performance shell written in Rust. Building this unified my interests in core systems engineering (architecting the shell itself) and cloud infrastructure (leveraging AWS for rigorous benchmarking and validation).
     *   **Performance:** Achieved up to a **x94 speedup** on specific parallel tasks.
     *   **Memory Efficiency:** Delivered an **order of magnitude improvement** in memory spawn speedups compared to standard environments, with consistent, within-magnitude speedups across all other operations.
