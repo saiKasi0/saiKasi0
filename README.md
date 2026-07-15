@@ -16,10 +16,12 @@ I'm a developer passionate about low-level systems programming, distributed syst
     *   **Live Telemetry Dashboard:** Includes a custom real-time GUI (LOHA // ALLOC) to monitor heap maps, memory fragmentation percentages, operations per second, and latency.
     *   **Adaptive Topologies:** Features distinct "training" and "inference" modes that analyze workload traces to converge on the most stable and performant memory layouts.
 
-*   🌊🧸 **WaterBearsDB** *(Work in Progress)*
-    Currently architecting a new database system.
+*   📦 **[WarrenDB](https://github.com/saiKasi0/WarrenDB)**
+    A distributed, erasure-coded, self-healing object store in Go — built as a controlled experiment in how storage systems should spend their repair I/O. RS(k,m) erasure coding, BLAKE3/Merkle integrity, and an S3-compatible gateway.
+    *   **A real experiment, not just a system:** ~1,200 seeded benchmark runs prove a corruption-aware scrub scheduler cuts unrecoverable data loss **54%** at equal I/O budget — worth a 2× scrub budget for free.
+    *   **Deterministic simulation:** 30 days of cluster failure collapse into a **14-second, bit-for-bit reproducible** run, wrapping the real production node code so every simulated repair is the production path.
 
-*   🌩️ **Vuyha** *(Work in Progress)*
+*   ⏰ **Proper Time** *(Work in Progress)*
     TBA
 
 ### 🌱 What I'm Exploring
