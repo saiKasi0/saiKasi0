@@ -21,7 +21,7 @@ I'm a developer passionate about low-level systems programming, distributed syst
     *   **A real experiment, not just a system:** ~1,200 seeded benchmark runs prove a corruption-aware scrub scheduler cuts unrecoverable data loss **54%** at equal I/O budget — worth a 2× scrub budget for free.
     *   **Deterministic simulation:** 30 days of cluster failure collapse into a **14-second, bit-for-bit reproducible** run, wrapping the real production node code so every simulated repair is the production path.
 
-*   📈 **[Proper Time](https://github.com/saiKasi0/proper-time)**
+*   📈 **[Proper Time](https://github.com/saiKasi0/proper_time)**
     A market-microstructure study reproducing stochastic subordination (Clark 1973; Ané–Geman 2000) on 32M cleaned BTCUSDT tick trades — sampling price in *event time* (a clock that ticks with information arrival) instead of calendar time to recover the near-Gaussian process underneath.
     *   **The reproduction:** excess kurtosis collapses **~32 → ~2** moving from calendar to event-time bars; QQ tails straighten and Jarque–Bera falls ~175×.
     *   **Honest science:** reports two *negative* results too — event time redistributes rather than removes volatility clustering, and loses to calendar on out-of-sample vol forecasting. Clean results, reported as-is.
