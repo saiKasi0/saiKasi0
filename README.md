@@ -29,8 +29,8 @@ I'm a developer passionate about low-level systems programming, distributed syst
 
 ### 🌱 What I'm Exploring
 
-*   **Core Interests:** Systems, Machine Learning, Mathematics, and Quantum Computing.
-*   **Currently Learning:** Operating systems architecture, distributed systems, and networking.
+*   **Core Interests:** Systems, Machine Learning, Mathematics, Quant Research, and Quantum Computing.
+*   **Currently Learning:** Distributed systems, networking, and market microstructure.
 
 ### ⚡ Quick Facts
 *   **Pronouns:** he/him
