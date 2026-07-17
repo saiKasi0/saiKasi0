@@ -28,7 +28,7 @@ I'm a developer passionate about low-level systems programming, distributed syst
     *   **Original contribution:** a `dτ/dt` "clock-rate" chart showing information intensity spiking ~100× around scheduled shocks (CPI, FOMC, the ETF-approval news), then relaxing.
 
 *  🖥️ **[GPU Kernal]**
-    * I'm looking to both learn about and devlop my own GPU Kernal are basis for a unique fork comming soon - (Expected End of Fall 26)
+    * I'm looking to both learn about and devlop my own GPU Kernal as basis for a unique fork comming soon - (Expected End of Fall 26)
 
 ### 🌱 What I'm Exploring
 
