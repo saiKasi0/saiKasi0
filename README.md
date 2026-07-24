@@ -1,4 +1,4 @@
-# 👋 Hi, I’m Prabhav Kasibhatla
+# 👋 Hi, I'm Prabhav Kasibhatla
 
 🎓 **BS Computer Science & Computational Physics @ UT Austin**
 
@@ -6,15 +6,18 @@ I'm a developer passionate about low-level systems programming, distributed syst
 
 ### 🚀 Featured Projects
 
-*   🦀 **[Iron Clad](https://github.com/saiKasi0/iron_clad)** 
-    A high-performance shell written in Rust. Building this unified my interests in core systems engineering (architecting the shell itself) and cloud infrastructure (leveraging AWS for rigorous benchmarking and validation).
-    *   **Performance:** Achieved up to a **x94 speedup** on specific parallel tasks.
-    *   **Memory Efficiency:** Delivered an **order of magnitude improvement** in memory spawn speedups compared to standard environments, with consistent, within-magnitude speedups across all other operations.
+*   🔬 **[Preimage](https://github.com/saiKasi0/Preimage)**
+    Amortized prompt inversion, evaluated *functionally*. Train a model that reads arbitrary text and emits a prompt making a frozen target model reproduce that text's **distribution** — judged by whether the regeneration matches, not by string-matching a "true" prompt (which, for arbitrary text, doesn't exist). At its core: the inverse problem for a stochastic simulator, i.e. amortized Bayesian inference.
+    *   **Amortization beats search:** the reward-optimized inverter reaches **93% of best-of-8 search quality in a single call** (0.681 vs 0.732 embedding similarity) — above a 0.637 zero-shot bar and a 0.359 retrieval floor.
+    *   **Reward hacking, measured and priced out:** ~24% of sampled candidate prompts attempt verbatim-copy strategies, with functional score correlating **+0.56** with target overlap absent the guard. The n-gram guard acts as a Bayesian prior term.
+    *   **Built so the numbers can't be artifacts:** template-family-disjoint holdouts, pre-split MinHash dedup, provenance-split memorization controls separating *reachability* from *recall*, and metric sanity gates validated before any training.
+    *   **Status:** complete config-driven pipeline, 52 tests, validated end-to-end at dev tier (135M stand-in). Full-scale 8B runs are config changes pending GPU allocation.
 
 *   🧠 **[Lohalloc](https://github.com/saiKasi0/Lohalloc)**
-    An intelligent, machine-learning-driven memory allocator that bridges ML and low-level systems architecture. It dynamically learns and adapts allocation strategies to minimize fragmentation and optimize throughput.
-    *   **Live Telemetry Dashboard:** Includes a custom real-time GUI (LOHA // ALLOC) to monitor heap maps, memory fragmentation percentages, operations per second, and latency.
-    *   **Adaptive Topologies:** Features distinct "training" and "inference" modes that analyze workload traces to converge on the most stable and performant memory layouts.
+    An intelligent, machine-learning-driven memory allocator that bridges ML and low-level systems architecture. A UCB1 multi-armed bandit learns per-call-site allocation topology during training, then freezes into a CHD minimal perfect hash table for O(1) routing at inference.
+    *   **A specialist, honestly priced:** wins mixed-size/lifetime workloads by up to **6× on speed** and **4–16× on peak RSS** — and loses uniform small-object churn by 1.5–1.8×. Certified on bare-metal AWS Graviton across C/C++/Rust with Mann–Whitney U significance testing over raw per-run samples.
+    *   **Live Telemetry Dashboard:** a custom real-time GUI (LOHA // ALLOC) monitoring heap maps, fragmentation, ops/sec, and latency — zero-overhead in production builds (feature-gated; verified via `nm`).
+    *   **Adaptive Topologies:** distinct training and inference modes that analyze workload traces to converge on the most stable and performant memory layouts.
 
 *   📦 **[WarrenDB](https://github.com/saiKasi0/WarrenDB)**
     A distributed, erasure-coded, self-healing object store in Go — built as a controlled experiment in how storage systems should spend their repair I/O. RS(k,m) erasure coding, BLAKE3/Merkle integrity, and an S3-compatible gateway.
@@ -27,8 +30,13 @@ I'm a developer passionate about low-level systems programming, distributed syst
     *   **Honest science:** reports two *negative* results too — event time redistributes rather than removes volatility clustering, and loses to calendar on out-of-sample vol forecasting. Clean results, reported as-is.
     *   **Original contribution:** a `dτ/dt` "clock-rate" chart showing information intensity spiking ~100× around scheduled shocks (CPI, FOMC, the ETF-approval news), then relaxing.
 
-*  🖥️ **[GPU Kernal]**
-    * I'm looking to both learn about and devlop my own GPU Kernal as basis for a unique fork comming soon - (Expected End of Fall 26)
+*   🦀 **[Iron Clad](https://github.com/saiKasi0/iron_clad)**
+    A high-performance shell written in Rust. Building this unified my interests in core systems engineering (architecting the shell itself) and cloud infrastructure (leveraging AWS for rigorous benchmarking and validation).
+    *   **Performance:** up to **94% reduction in process-spawn latency** vs `bash`, by eliminating `fork()`/CoW via `posix_spawn`-only execution, zero-copy fd passing, and a zero-allocation REPL loop.
+    *   **Measured properly:** p50/p90/p99 latency on core-isolated bare-metal EC2 via a zero-touch Terraform + Packer pipeline.
+
+*   🖥️ **GPU Kernels** *(in progress — expected end of Fall 2026)*
+    Climbing the SGEMM optimization ladder from a naive kernel to near-cuBLAS, with each rung explained by a profiler counter, then a fused capstone kernel.
 
 ### 🌱 What I'm Exploring
 
@@ -36,6 +44,7 @@ I'm a developer passionate about low-level systems programming, distributed syst
 *   **Currently Learning:** Compilers, GPU Software, Distributed Systems, Networking, and Market Microstructure.
 
 ### ⚡ Quick Facts
+
 *   **Pronouns:** he/him
 *   **Fun Fact:** I like coffee, basketball, and weightlifting
 
