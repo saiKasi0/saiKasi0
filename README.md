@@ -31,9 +31,10 @@ I'm a developer passionate about low-level systems programming, distributed syst
     *   **Original contribution:** a `dτ/dt` "clock-rate" chart showing information intensity spiking ~100× around scheduled shocks (CPI, FOMC, the ETF-approval news), then relaxing.
 
 *   🦀 **[Iron Clad](https://github.com/saiKasi0/iron_clad)**
-    A high-performance shell written in Rust. Building this unified my interests in core systems engineering (architecting the shell itself) and cloud infrastructure (leveraging AWS for rigorous benchmarking and validation).
-    *   **Performance:** up to **94% reduction in process-spawn latency** vs `bash`, by eliminating `fork()`/CoW via `posix_spawn`-only execution, zero-copy fd passing, and a zero-allocation REPL loop.
-    *   **Measured properly:** p50/p90/p99 latency on core-isolated bare-metal EC2 via a zero-touch Terraform + Packer pipeline.
+    A high-performance Unix shell in Rust, built to find out how much of a shell's latency is the shell's own fault. Unified my interests in core systems engineering (architecting the shell itself) and cloud infrastructure (AWS for rigorous benchmarking and validation).
+    *   **Performance, on like-for-like workloads:** ~**45% lower REPL dispatch latency** and ~**20% lower pipeline latency** than `bash`, plus ~**13% faster cold start** — via `posix_spawn`-only execution (zero `fork()` calls, no CoW page-table cost), zero-copy fd passing (`libc::dup2`), and a buffer-reusing parser.
+    *   **Where it doesn't win, stated:** spawn latency is only ~**9% better at high fan-out** (999 concurrent jobs) and a wash below ~300.
+    *   **Measured properly:** hyperfine p50/p90/p99 on AWS Graviton bare metal via a zero-touch Terraform + Packer pipeline with automated `isolcpus` core isolation (cold start n=100; other cases n=10).
 
 *   🖥️ **GPU Kernels** *(in progress — expected end of Fall 2026)*
     Climbing the SGEMM optimization ladder from a naive kernel to near-cuBLAS, with each rung explained by a profiler counter, then a fused capstone kernel.
