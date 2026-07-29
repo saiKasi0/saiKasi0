@@ -32,9 +32,9 @@ I'm a developer passionate about low-level systems programming, distributed syst
 
 *   🦀 **[Iron Clad](https://github.com/saiKasi0/iron_clad)**
     A high-performance Unix shell in Rust, built to find out how much of a shell's latency is the shell's own fault. Unified my interests in core systems engineering (architecting the shell itself) and cloud infrastructure (AWS for rigorous benchmarking and validation).
-    *   **Performance, on like-for-like workloads:** ~**45% lower REPL dispatch latency** and ~**20% lower pipeline latency** than `bash`, plus ~**13% faster cold start** — via `posix_spawn`-only execution (zero `fork()` calls, no CoW page-table cost), zero-copy fd passing (`libc::dup2`), and a buffer-reusing parser.
-    *   **Where it doesn't win, stated:** spawn latency is only ~**9% better at high fan-out** (999 concurrent jobs) and a wash below ~300.
-    *   **Measured properly:** hyperfine p50/p90/p99 on AWS Graviton bare metal via a zero-touch Terraform + Packer pipeline with automated `isolcpus` core isolation (cold start n=100; other cases n=10).
+    *   **Performance, parity-verified:** geometric mean **1.21×** over 15 cases vs `bash` on isolated-core Graviton bare metal — **1.84×** REPL dispatch (1000 iterations), **1.27×** spawn-and-reap (250 jobs), **1.24×** pipeline (16 stages), **1.14×** cold start (n=100). Via `posix_spawn`-only execution (zero `fork()` calls, no CoW page-table cost), zero-copy fd passing (`libc::dup2`), and a borrowing parser over a recycled input buffer.
+    *   **Losses reported, not dropped:** parse complexity 3 sits at **0.99×**, still a hair behind `bash`. Two parse cases were worse — 0.80×/0.83×, from spawning `/bin/echo` on every `echo`; an `echo` builtin moved them to 1.15× and 0.99×.
+    *   **Measured properly:** hyperfine `-N` (no intermediate shell) on AWS Graviton bare metal via a zero-touch Terraform + Packer pipeline with automated `isolcpus` core isolation. Cold start n=100; other cases n=10, so p50 is the reportable statistic and p90/p99 are spread, not tail estimates.
 
 *   🖥️ **GPU Kernels** *(in progress — expected end of Fall 2026)*
     Climbing the SGEMM optimization ladder from a naive kernel to near-cuBLAS, with each rung explained by a profiler counter, then a fused capstone kernel.
