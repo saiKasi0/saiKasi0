@@ -2,9 +2,16 @@
 
 🎓 **BS Computer Science & Computational Physics @ UT Austin**
 
-I'm a developer passionate about low-level systems programming, distributed systems, cloud, and ML.
+I build systems at the intersection of low-level performance, machine learning, and computational physics — and I try to measure them honestly enough that the results survive someone checking.
 
 ### 🚀 Featured Projects
+
+*   ⚛️ **[qmc-pricer](https://github.com/saiKasi0/qmc-pricer)**
+    Quantum Amplitude Estimation for derivative pricing, built from scratch — including the simulator — and benchmarked against classical Monte Carlo **and** quasi-Monte Carlo.
+    *   **The quadratic speedup is real, and it is not enough.** IQAE converges at `N^-1.01` against Monte Carlo's `N^-0.54` with non-overlapping confidence intervals — exactly what the literature promises. Scrambled-Sobol quasi-Monte Carlo reaches the *same rate* classically and beats every quantum method by **two orders of magnitude** in absolute error at every budget tested.
+    *   **The simulator is mine.** A from-scratch statevector engine in Rust — memory-bandwidth-aware kernels, gate fusion, `rayon` — hitting **94% of this machine's measured 270 GB/s sustained bandwidth** at 26 qubits, slightly faster than Qiskit Aer. The denominator is benchmarked, not a spec sheet.
+    *   **Two independent backends.** A Rust engine (hand-written index arithmetic over a flat buffer) and a JAX engine (tensor contractions) sharing no code, agreeing with each other and Qiskit to **4e-16**. A bug would have to be reproduced independently, in two languages, by two different algorithms, to survive.
+    *   **What it would actually cost:** ~**9.2e12 T gates** and 61 logical qubits to price one option to 1e-4 — and the polynomial state preparation that would close that gap is precisely what Herbert's critique targets.
 
 *   🔬 **[Preimage](https://github.com/saiKasi0/Preimage)**
     Amortized prompt inversion, evaluated *functionally*. Train a model that reads arbitrary text and emits a prompt making a frozen target model reproduce that text's **distribution** — judged by whether the regeneration matches, not by string-matching a "true" prompt (which, for arbitrary text, doesn't exist). At its core: the inverse problem for a stochastic simulator, i.e. amortized Bayesian inference.
@@ -16,19 +23,15 @@ I'm a developer passionate about low-level systems programming, distributed syst
 *   🧠 **[Lohalloc](https://github.com/saiKasi0/Lohalloc)**
     An intelligent, machine-learning-driven memory allocator that bridges ML and low-level systems architecture. A UCB1 multi-armed bandit learns per-call-site allocation topology during training, then freezes into a CHD minimal perfect hash table for O(1) routing at inference.
     *   **A specialist, honestly priced:** wins mixed-size/lifetime workloads by up to **6× on speed** and **4–16× on peak RSS** — and loses uniform small-object churn by 1.5–1.8×. Certified on bare-metal AWS Graviton across C/C++/Rust with Mann–Whitney U significance testing over raw per-run samples.
+    *   **The bug worth reading about:** the bandit kept under-selecting the bump arena. The cause wasn't the allocator — a 48-byte training header was landing on the arena's cold target cache line, paying exactly the cache-miss cost the arena existed to avoid. The reward signal was measuring the instrument, not the system.
     *   **Live Telemetry Dashboard:** a custom real-time GUI (LOHA // ALLOC) monitoring heap maps, fragmentation, ops/sec, and latency — zero-overhead in production builds (feature-gated; verified via `nm`).
-    *   **Adaptive Topologies:** distinct training and inference modes that analyze workload traces to converge on the most stable and performant memory layouts.
 
-*   📦 **[WarrenDB](https://github.com/saiKasi0/WarrenDB)**
-    A distributed, erasure-coded, self-healing object store in Go — built as a controlled experiment in how storage systems should spend their repair I/O. RS(k,m) erasure coding, BLAKE3/Merkle integrity, and an S3-compatible gateway.
-    *   **A real experiment, not just a system:** ~1,200 seeded benchmark runs prove a corruption-aware scrub scheduler cuts unrecoverable data loss **54%** at equal I/O budget — worth a 2× scrub budget for free.
-    *   **Deterministic simulation:** 30 days of cluster failure collapse into a **14-second, bit-for-bit reproducible** run, wrapping the real production node code so every simulated repair is the production path.
-
-*   📈 **[Proper Time](https://github.com/saiKasi0/proper_time)**
-    A market-microstructure study reproducing stochastic subordination (Clark 1973; Ané–Geman 2000) on 32M cleaned BTCUSDT tick trades — sampling price in *event time* (a clock that ticks with information arrival) instead of calendar time to recover the near-Gaussian process underneath.
-    *   **The reproduction:** excess kurtosis collapses **~32 → ~2** moving from calendar to event-time bars; QQ tails straighten and Jarque–Bera falls ~175×.
-    *   **Honest science:** reports two *negative* results too — event time redistributes rather than removes volatility clustering, and loses to calendar on out-of-sample vol forecasting. Clean results, reported as-is.
-    *   **Original contribution:** a `dτ/dt` "clock-rate" chart showing information intensity spiking ~100× around scheduled shocks (CPI, FOMC, the ETF-approval news), then relaxing.
+*   🎛️ **[CRATEDIG](https://github.com/saiKasi0/cratedig)**
+    A real-time terminal sampler and sequencer in C++20, built because sample-based workflows are the one thing GarageBand handles poorly and the free alternatives are paywalled.
+    *   **Hard real-time, enforced rather than intended:** zero allocations, locks, syscalls, or exceptions in the audio callback — three lanes over lock-free SPSC rings with a janitor thread that owns all destruction, checked by global `operator new` replacement against a thread-local depth counter and a ThreadSanitizer-clean suite.
+    *   **Bit-exact determinism:** identical output across block sizes, run-to-run, and live-vs-offline, verified by committed golden hashes with a documented FMA-portability policy. Playback position is 32.32 fixed point, not float, so block-size invariance holds by construction rather than by luck.
+    *   **Negative-control testing:** every assertion is validated by deliberately breaking the behavior it claims to catch. It found a full suite that passed with bus routing deleted entirely.
+    *   **Status:** M5.7 of a documented 9-milestone roadmap. Chops, sequences, mixes. Not yet: recording, export, plugin hosting.
 
 *   🦀 **[Iron Clad](https://github.com/saiKasi0/iron_clad)**
     A high-performance Unix shell in Rust, built to find out how much of a shell's latency is the shell's own fault. Unified my interests in core systems engineering (architecting the shell itself) and cloud infrastructure (AWS for rigorous benchmarking and validation).
@@ -36,8 +39,10 @@ I'm a developer passionate about low-level systems programming, distributed syst
     *   **Where it doesn't win, stated:** parse complexity 3 sits at **0.99×**, still a hair behind `bash`. Two parse cases were worse — 0.80×/0.83×, from spawning `/bin/echo` on every `echo` — until an `echo` builtin moved them to 1.15× and 0.99×.
     *   **Measured properly:** every benchmark pair is gated on a semantic parity check (stdout, exit status, and failure diagnostics must agree before timing), since Iron Clad implements a POSIX subset and an unsupported-syntax case would otherwise time `bash` doing work it skips. hyperfine `-N` at p50/p90/p99 on AWS Graviton bare metal via a zero-touch Terraform + Packer pipeline with automated `isolcpus` core isolation. Cold start n=100; other cases n=10, so p50 is the reportable statistic.
 
-*   🖥️ **GPU Kernels** *(in progress — expected end of Fall 2026)*
-    Climbing the SGEMM optimization ladder from a naive kernel to near-cuBLAS, with each rung explained by a profiler counter, then a fused capstone kernel.
+### 📂 Also
+
+*   📦 **[WarrenDB](https://github.com/saiKasi0/WarrenDB)** — a distributed, erasure-coded, self-healing object store in Go, built as a controlled experiment in how storage systems should spend their repair I/O. ~1,200 seeded runs show corruption-aware scrub scheduling cuts unrecoverable data loss **54%** at equal I/O budget, and a deterministic harness collapses 30 days of cluster failure into a **14-second bit-for-bit reproducible run** over the real production code path.
+*   📈 **[Proper Time](https://github.com/saiKasi0/proper_time)** — reproducing stochastic subordination (Clark 1973; Ané–Geman 2000) on 32M BTCUSDT tick trades: excess kurtosis collapses **~32 → ~2** moving from calendar to event time, with two *negative* results reported alongside it and an original `dτ/dt` "clock-rate" chart showing information intensity spiking ~100× around scheduled shocks.
 
 ### 🌱 What I'm Exploring
 
