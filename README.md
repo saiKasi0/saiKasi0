@@ -2,7 +2,7 @@
 
 🎓 **BS Computer Science & Computational Physics @ UT Austin**
 
-I build systems at the intersection of low-level performance, machine learning, and computational physics — and I try to measure them honestly enough that the results survive someone checking.
+I build systems at the intersection of low-level performance, machine learning, and computational physics.
 
 ### 🚀 Featured Projects
 
